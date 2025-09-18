@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.example.microservices.grpc"; // Package chung cho các lớp gRPC được tạo
+option java_outer_classname = "UserServiceProto"; // Tên lớp chính được tạo
+
+package user; // Tên package cho dịch vụ gRPC
+
+// Định nghĩa dịch vụ User Service
+service UserServiceGrpc {
+  rpc GetUserById (GetUserRequest) returns (UserResponse);
+}
+
+// Định nghĩa tin nhắn yêu cầu để lấy người dùng bằng ID
+message GetUserRequest {
+  int64 user_id = 1; // Trường ID của người dùng
+}
+
+// Định nghĩa tin nhắn phản hồi cho thông tin người dùng
+message UserResponse {
+  int64 id = 1;
+  string username = 2;
+  string email = 3;
+}
